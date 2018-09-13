@@ -3,9 +3,9 @@
 </style>
 <template>
   <view class="custom-class test" bindtap="tap" data-index="{{tag}}">{{text}}</view>
-</template>>
+</template>
 <script>
-  import wexp from '../../wexp/index'
+  import wexp from 'wexp/index'
   export default class Test extends wexp.component{
     config = {
       "component": true
@@ -46,6 +46,7 @@
       this.setData({tag: 'tapd'})
       console.log('component')
       setTimeout(() => {
+        console.log(this)
         this.$query('.test').then((res) => {
           console.log(res)
         })

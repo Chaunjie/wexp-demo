@@ -1,20 +1,17 @@
 <style>
-  .container{
-    background-color: gray;
+  page{
+    background-color: #f8f8f8;
   }
 </style>
 <style lang="less" src="./less/index.less"></style>
-<template>
-  <view bindtap="tapPro">66666</view>
-</template>
 <script>
-  import wexp from './wexp/index'
+  import wexp from 'wexp/index'
   import regeneratorRuntime from './lib/runtime'
 
   export default class extends wexp.app{
     config = {
       "pages": [
-        "pages/testindex/index",
+        "pages/index/index",
         "pages/test/index"
       ],
       "window": {
@@ -33,10 +30,6 @@
     
     test (data) {
       console.log(data)
-    }
-
-    constructor () {
-      super()
     }
 
     sleep (s) {

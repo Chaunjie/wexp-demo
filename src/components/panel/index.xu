@@ -1,0 +1,37 @@
+<style lang="less" src="./main.less"></style>
+<template>
+  <view class="panel custom-class">
+    <view wx:if="title" class="title">{{title}}</view>
+    <view class="info">
+      <slot/>
+    </view>
+  </view>
+</template>
+<script>
+  import wexp from 'wexp/index'
+
+  export default class Panel extends wexp.component{
+    config = {
+      "component": true
+    }
+
+    externalClasses = ['custom-class']
+
+    options = {
+      multipleSlots: true
+    }
+
+    properties = {
+      title: {
+        type: String,
+        value: ''
+      }
+    }
+
+    methods = {
+      test () {
+        console.log('test')
+      }
+    }
+  }
+</script>

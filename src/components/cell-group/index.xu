@@ -1,0 +1,23 @@
+<style lang="less" src="./main.less"></style>
+<template>
+  <view class="cell custom-class">
+    <slot/>
+  </view>
+</template>
+<script>
+  import wexp from 'wexp/index'
+
+  export default class CellGroup extends wexp.component{
+    config = {
+      "component": true
+    }
+
+    externalClasses = ['custom-class']
+
+    options = {
+      multipleSlots: true
+    }
+    
+    methods = {}
+  }
+</script>

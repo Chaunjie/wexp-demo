@@ -1,20 +1,15 @@
 <template>
-  <view bindtap="tapPro">{{name}}</view>
-</template>>
+  <view bindtap="tapPro">{{text}}</view>
+</template>
 <script>
-  import wexp from '../../wexp/index'
-  export default class Index extends wexp.page{
+  import wexp from 'wexp/index'
+  export default class Test extends wexp.page{
     config = {
-      "navigationBarTitleText": "主页",
-      "usingComponents": {
-        "k-panel": "../../dist/panel/index",
-        "k-cell-group": "../../dist/cell-group/index",
-        "k-cell": "../../dist/cell/index"
-      }
+      "navigationBarTitleText": "测试页面"
     }
 
     data = {
-      name: 'chaunjie'
+      text: 'chaunjie'
     }
 
     methods = {
@@ -28,15 +23,10 @@
 
     onLoad (options) {
       const name = this.$parent.globalData.name
-      console.log(name)
-      this.setData({name: name})
-      setTimeout(() => {
-        this.setData({
-          name: 'xudao'
-        }, () => {
-          console.log(this.data)
-        })
-      }, 3000)
+      this.setData({
+        text: name
+      })
+      console.log(name)    
     }
 
     tapPro (e) {

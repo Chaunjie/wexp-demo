@@ -1,36 +1,25 @@
-<style lang="less">
-  @import "../../less/index.less";
-
-  .container{
-    background-color: orange !important;
-    .test{
-      background-color: green;
-    }
-  }
-  .test {
-    color: orange;
-  }
-</style>
-<style>
-  @import "../../wxss/add.wxss";
-</style>
 <style lang="less" src="../../less/index.less"></style>
 <template>
-  <view bindtap="tapPro" class="padding test-wxss">666669999</view>
-  <k-test text="{{name}}" bind:select="select" custom-class="test"></k-test>
+  <view class="icon-img">
+    <view class="bg"></view>
+  </view>
+  <k-panel title="{{item.title}}" custom-class="panel-container" wx:for="{{ cellArr }}" wx:for-item="item" wx:key="index">
+    <k-cell-group custom-class="single-cell-group">
+      <k-cell title="{{it.title}}" arrow="{{ true }}" access="{{ true }}" wx:for="{{ item.list }}" wx:for-item="it" wx:key="idx" bind:tap="onClick" data-item="{{ it }}"></k-cell>
+    </k-cell-group>
+  </k-panel>
 </template>
 <script>
-  import wexp from '../../wexp/index'
-  import regeneratorRuntime from '../../lib/runtime'
+  import wexp from 'wexp/index'
 
   export default class Index extends wexp.page{
     config = {
       navigationBarTitleText: '主页',
       "backgroundColor": "#ccc",
       "usingComponents": {
-        "k-panel": "../../dist/panel/index",
-        "k-cell-group": "../../dist/cell-group/index",
-        "k-cell": "../../dist/cell/index",
+        "k-panel": "../../components/panel/index",
+        "k-cell-group": "../../components/cell-group/index",
+        "k-cell": "../../components/cell/index",
         "k-test": "../../components/test/index"
       }
     }
@@ -187,57 +176,15 @@
             }
           ]
         }
-      ],
-      name: 'chaunjie'
+      ]
     }
 
-    methods = {
-      select (e) {
-        console.log(e.detail)
-      },
-      test () {
-        console.log(99999)
-      },
-      tap (e) {
-        console.log(e)
-      },
-      onLoad () {
-       this.setData({
-          cellArr: [],
-          name: 'xudao学习学习'
-        })
-        setTimeout(() => {
-          // console.log(this.$parent.globalData)
-          // this.$parent.globalData.name = 'xudao11111'
-          // this.testAsync()
-          // console.log(this.data)
-          this.$query('.padding').then((res) => {
-            console.log(res)
-          })
-        }, 3000)
-      }
-    }
+    methods = {}
 
-    sleep (s) {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve('promise 76666')
-        }, s * 1000)
-      })
-    }
-
-    async testAsync () {
-      const data = await this.sleep(3)
-      console.log(data)
-    }
-
-    async tapPro (e) {
-      this.test()
-      this.$parent.globalData.name = 'xudao'
-      const res = await this.$query('.padding')
-      console.log(res)
-      this.setData({name: 'xudao'})
-      // this.$route('navigate', '../test/index', {name: 'chaunjie'})
+    onClick (e) {
+      this.$parent.globalData.name = '点击返回'
+      const detail = e.currentTarget.dataset.item
+      this.$route('navigate', '../test/index')
     }
   }
 </script>
