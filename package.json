@@ -1,0 +1,24 @@
+{
+  "name": "testwexp",
+  "version": "0.0.1",
+  "description": "wexp-demo",
+  "main": "index.js",
+  "scripts": {
+    "dev": "wexp build -w",
+    "build": "wexp build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chaunjie/wexp-demo.git"
+  },
+  "keywords": [
+    "wexp"
+  ],
+  "author": "chaunjie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chaunjie/wexp-demo/issues"
+  },
+  "homepage": "https://github.com/Chaunjie/wexp-demo#readme"
+}

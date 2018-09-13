@@ -1,0 +1,55 @@
+<style>
+  .conatiner{color: green;}
+</style>
+<template>
+  <view class="custom-class test" bindtap="tap" data-index="{{tag}}">{{text}}</view>
+</template>>
+<script>
+  import wexp from '../../wexp/index'
+  export default class Test extends wexp.component{
+    config = {
+      "component": true
+    }
+
+    externalClasses = ['custom-class']
+
+    options = {
+      multipleSlots: true
+    }
+
+    properties = {
+      text: {
+        type: String,
+        value: '99999'
+      }
+    }
+
+    data = {
+      tag: 'abc'
+    }
+
+    methods = {
+      test () {
+        console.log(99999)
+      },
+      tap (e) {
+        console.log(e)
+        const dataset = e.currentTarget.dataset
+        this.doSelect(dataset.index);
+      },
+      doSelect (res) {
+        this.triggerEvent('select', res);
+      }
+    }
+
+    ready () {
+      this.setData({tag: 'tapd'})
+      console.log('component')
+      setTimeout(() => {
+        this.$query('.test').then((res) => {
+          console.log(res)
+        })
+      }, 1000)
+    }
+  }
+</script>
