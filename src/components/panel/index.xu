@@ -1,4 +1,4 @@
-<style lang="less" src="./main.less"></style>
+<style lang="less" src="./index.less"></style>
 <template>
   <view class="panel custom-class">
     <view wx:if="title" class="title">{{title}}</view>

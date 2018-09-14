@@ -1,4 +1,4 @@
-<style lang="less" src="./main.less"></style>
+<style lang="less" src="./index.less"></style>
 <template>
   <view class="cell custom-class">
     <slot/>
@@ -17,7 +17,7 @@
     options = {
       multipleSlots: true
     }
-    
-    methods = {}
+
+   
   }
 </script>

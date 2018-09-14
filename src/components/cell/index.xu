@@ -1,4 +1,4 @@
-<style lang="less" src="./main.less"></style>
+<style lang="less" src="./index.less"></style>
 <template>
   <view class="cell-list custom-class {{access ? 'cell-list-access' : ''}}">
     <view class="cell-list-bd">

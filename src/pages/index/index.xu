@@ -1,4 +1,5 @@
 <style lang="less" src="../../less/index.less"></style>
+<style lang="less" src="./index.less"></style>
 <template>
   <view class="icon-img">
     <view class="bg"></view>
