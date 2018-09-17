@@ -20,6 +20,7 @@ $ wexp init wexp-demo myproject
 
 ```bash
 $ cd myproject
+$ npm install
 ```
 
 **开启实时编译**
