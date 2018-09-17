@@ -20,5 +20,14 @@
   "bugs": {
     "url": "https://github.com/Chaunjie/wexp-demo/issues"
   },
-  "homepage": "https://github.com/Chaunjie/wexp-demo#readme"
+  "homepage": "https://github.com/Chaunjie/wexp-demo#readme",
+  "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "eslint": "^5.6.0",
+    "eslint-config-standard": "^7.1.0",
+    "eslint-plugin-html": "^4.0.5",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "wexp-eslint": "0.0.1"
+  }
 }

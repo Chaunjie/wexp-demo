@@ -7,7 +7,7 @@
  * additional grant of patent rights can be found in the PATENTS file in
  * the same directory.
  */
-
+/* eslint-disable */
 !(function(global) {
   "use strict";
 
@@ -734,3 +734,4 @@
   typeof window === "object" ? window :
   typeof self === "object" ? self : this
 );
+/* eslint-enable */

@@ -3,9 +3,9 @@
 </template>
 <script>
   import wexp from 'wexp/index'
-  export default class Test extends wexp.page{
+  export default class Test extends wexp.page {
     config = {
-      "navigationBarTitleText": "测试页面"
+      'navigationBarTitleText': '测试页面'
     }
 
     data = {
@@ -26,7 +26,7 @@
       this.setData({
         text: name
       })
-      console.log(name)    
+      console.log(name)
     }
 
     tapPro (e) {

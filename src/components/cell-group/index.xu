@@ -7,9 +7,9 @@
 <script>
   import wexp from 'wexp/index'
 
-  export default class CellGroup extends wexp.component{
+  export default class CellGroup extends wexp.component {
     config = {
-      "component": true
+      'component': true
     }
 
     externalClasses = ['custom-class']
@@ -17,7 +17,5 @@
     options = {
       multipleSlots: true
     }
-
-   
   }
 </script>

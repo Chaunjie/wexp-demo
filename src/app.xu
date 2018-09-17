@@ -6,49 +6,48 @@
 <style lang="less" src="./less/index.less"></style>
 <script>
   import wexp from 'wexp/index'
-  import regeneratorRuntime from './lib/runtime'
+  // import regeneratorRuntime from './lib/runtime'
 
-  export default class extends wexp.app{
+  export default class extends wexp.app {
     config = {
-      "pages": [
-        "pages/index/index",
-        "pages/test/index"
+      'pages': [
+        'pages/index/index',
+        'pages/test/index'
       ],
-      "window": {
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "kai-ui",
-        "navigationBarTextStyle": "black",
-        "backgroundTextStyle": "dark",
-        "backgroundColor": "#f5f5f5"
+      'window': {
+        'navigationBarBackgroundColor': '#fff',
+        'navigationBarTitleText': 'kai-ui',
+        'navigationBarTextStyle': 'black',
+        'backgroundTextStyle': 'dark',
+        'backgroundColor': '#f5f5f5'
       },
-      "debug": true
+      'debug': true
     }
 
     globalData = {
       name: 'xxx'
     }
-    
     test (data) {
       console.log(data)
     }
 
-    sleep (s) {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve('promise resolved')
-        }, s * 1000)
-      })
-    }
+    // sleep (s) {
+    //   return new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //       resolve('promise resolved')
+    //     }, s * 1000)
+    //   })
+    // }
 
-    async testAsync () {
-      const data = await this.sleep(3)
-      console.log(data)
-    }
-
+    // async testAsync () {
+    //   const data = await this.sleep(3)
+    //   console.log(data)
+    // }
 
     onLaunch (e) {
       console.log(e)
-      this.testAsync()
+      // console.log(regeneratorRuntime)
+      // this.testAsync()
     }
   }
 </script>
