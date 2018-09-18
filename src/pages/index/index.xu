@@ -16,7 +16,7 @@
   export default class Index extends wexp.page {
     config = {
       navigationBarTitleText: '主页',
-      'backgroundColor': '#ccc',
+      backgroundColor: '#ccc',
       'usingComponents': {
         'k-panel': '../../components/panel/index',
         'k-cell-group': '../../components/cell-group/index',
@@ -186,6 +186,18 @@
       this.$parent.globalData.name = '点击返回'
       // const detail = e.currentTarget.dataset.item
       this.$route('navigate', '../test/index')
+    }
+
+    onHide () {
+      console.log('on hide')
+    }
+
+    onLoad () {
+      console.log('on load')
+    }
+
+    onShow () {
+      console.log('on show')
     }
   }
 </script>
