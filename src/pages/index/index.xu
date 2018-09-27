@@ -12,6 +12,9 @@
 </template>
 <script>
   import wexp from 'wexp/index'
+  import { connect } from '../../lib/index'
+  import doTest from '../../lib/doTest'
+  connect(89898989, 7777)
 
   export default class Index extends wexp.page {
     config = {
@@ -179,8 +182,6 @@
         }
       ]
     }
-
-    methods = {}
 
     onClick (e) {
       this.$parent.globalData.name = '点击返回'

@@ -1,5 +1,5 @@
 <template>
-  <view bindtap="tapPro">{{text}}</view>
+  <view bindtap="tapPro" class="{{num < 3 ? 'test' : 'name'}}">{{text}}</view>
 </template>
 <script>
   import wexp from 'wexp/index'
@@ -9,16 +9,8 @@
     }
 
     data = {
-      text: 'chaunjie'
-    }
-
-    methods = {
-      test () {
-        console.log(99999)
-      },
-      tap (e) {
-        console.log(e)
-      }
+      text: 'chaunjie',
+      num: 2
     }
 
     onLoad (options) {
