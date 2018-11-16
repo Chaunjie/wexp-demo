@@ -34,7 +34,6 @@
   },
   "dependencies": {
     "kai-ui": "^1.2.4",
-    "wepy-com-toast": "^1.0.2",
     "wexp": "^0.1.0",
     "wexp-button": "^1.0.0"
   }
