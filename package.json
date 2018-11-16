@@ -31,5 +31,11 @@
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^2.3.1",
     "wexp-eslint": "0.0.5"
+  },
+  "dependencies": {
+    "kai-ui": "^1.2.4",
+    "wepy-com-toast": "^1.0.2",
+    "wexp": "^0.1.0",
+    "wexp-button": "^1.0.0"
   }
 }

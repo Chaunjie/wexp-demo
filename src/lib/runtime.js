@@ -1,3 +1,7 @@
+"use strict";
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 /**
  * Copyright (c) 2014, Facebook, Inc.
  * All rights reserved.
@@ -8,7 +12,7 @@
  * the same directory.
  */
 /* eslint-disable */
-!(function(global) {
+!function (global) {
   "use strict";
 
   var Op = Object.prototype;
@@ -19,7 +23,7 @@
   var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
   var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
 
-  var inModule = typeof module === "object";
+  var inModule = (typeof module === "undefined" ? "undefined" : _typeof(module)) === "object";
   var runtime = global.regeneratorRuntime;
   if (runtime) {
     if (inModule) {
@@ -94,42 +98,36 @@
 
   var getProto = Object.getPrototypeOf;
   var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
-  if (NativeIteratorPrototype &&
-      NativeIteratorPrototype !== Op &&
-      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+  if (NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
     // This environment has a native %IteratorPrototype%; use it instead
     // of the polyfill.
     IteratorPrototype = NativeIteratorPrototype;
   }
 
-  var Gp = GeneratorFunctionPrototype.prototype =
-    Generator.prototype = Object.create(IteratorPrototype);
+  var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
   GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
   GeneratorFunctionPrototype.constructor = GeneratorFunction;
-  GeneratorFunctionPrototype[toStringTagSymbol] =
-    GeneratorFunction.displayName = "GeneratorFunction";
+  GeneratorFunctionPrototype[toStringTagSymbol] = GeneratorFunction.displayName = "GeneratorFunction";
 
   // Helper for defining the .next, .throw, and .return methods of the
   // Iterator interface in terms of a single ._invoke method.
   function defineIteratorMethods(prototype) {
-    ["next", "throw", "return"].forEach(function(method) {
-      prototype[method] = function(arg) {
+    ["next", "throw", "return"].forEach(function (method) {
+      prototype[method] = function (arg) {
         return this._invoke(method, arg);
       };
     });
   }
 
-  runtime.isGeneratorFunction = function(genFun) {
+  runtime.isGeneratorFunction = function (genFun) {
     var ctor = typeof genFun === "function" && genFun.constructor;
-    return ctor
-      ? ctor === GeneratorFunction ||
-        // For the native GeneratorFunction constructor, the best we can
-        // do is to check its .name property.
-        (ctor.displayName || ctor.name) === "GeneratorFunction"
-      : false;
+    return ctor ? ctor === GeneratorFunction ||
+    // For the native GeneratorFunction constructor, the best we can
+    // do is to check its .name property.
+    (ctor.displayName || ctor.name) === "GeneratorFunction" : false;
   };
 
-  runtime.mark = function(genFun) {
+  runtime.mark = function (genFun) {
     if (Object.setPrototypeOf) {
       Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
     } else {
@@ -146,7 +144,7 @@
   // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
   // `hasOwn.call(value, "__await")` to determine if the yielded value is
   // meant to be awaited.
-  runtime.awrap = function(arg) {
+  runtime.awrap = function (arg) {
     return { __await: arg };
   };
 
@@ -158,17 +156,15 @@
       } else {
         var result = record.arg;
         var value = result.value;
-        if (value &&
-            typeof value === "object" &&
-            hasOwn.call(value, "__await")) {
-          return Promise.resolve(value.__await).then(function(value) {
+        if (value && (typeof value === "undefined" ? "undefined" : _typeof(value)) === "object" && hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function (value) {
             invoke("next", value, resolve, reject);
-          }, function(err) {
+          }, function (err) {
             invoke("throw", err, resolve, reject);
           });
         }
 
-        return Promise.resolve(value).then(function(unwrapped) {
+        return Promise.resolve(value).then(function (unwrapped) {
           // When a yielded Promise is resolved, its final value becomes
           // the .value of the Promise<{value,done}> result for the
           // current iteration. If the Promise is rejected, however, the
@@ -190,7 +186,7 @@
       }
     }
 
-    if (typeof global.process === "object" && global.process.domain) {
+    if (_typeof(global.process) === "object" && global.process.domain) {
       invoke = global.process.domain.bind(invoke);
     }
 
@@ -198,30 +194,28 @@
 
     function enqueue(method, arg) {
       function callInvokeWithMethodAndArg() {
-        return new Promise(function(resolve, reject) {
+        return new Promise(function (resolve, reject) {
           invoke(method, arg, resolve, reject);
         });
       }
 
       return previousPromise =
-        // If enqueue has been called before, then we want to wait until
-        // all previous Promises have been resolved before calling invoke,
-        // so that results are always delivered in the correct order. If
-        // enqueue has not been called before, then it is important to
-        // call invoke immediately, without waiting on a callback to fire,
-        // so that the async generator function has the opportunity to do
-        // any necessary setup in a predictable way. This predictability
-        // is why the Promise constructor synchronously invokes its
-        // executor callback, and why async functions synchronously
-        // execute code before the first await. Since we implement simple
-        // async functions in terms of async generators, it is especially
-        // important to get this right, even though it requires care.
-        previousPromise ? previousPromise.then(
-          callInvokeWithMethodAndArg,
-          // Avoid propagating failures to Promises returned by later
-          // invocations of the iterator.
-          callInvokeWithMethodAndArg
-        ) : callInvokeWithMethodAndArg();
+      // If enqueue has been called before, then we want to wait until
+      // all previous Promises have been resolved before calling invoke,
+      // so that results are always delivered in the correct order. If
+      // enqueue has not been called before, then it is important to
+      // call invoke immediately, without waiting on a callback to fire,
+      // so that the async generator function has the opportunity to do
+      // any necessary setup in a predictable way. This predictability
+      // is why the Promise constructor synchronously invokes its
+      // executor callback, and why async functions synchronously
+      // execute code before the first await. Since we implement simple
+      // async functions in terms of async generators, it is especially
+      // important to get this right, even though it requires care.
+      previousPromise ? previousPromise.then(callInvokeWithMethodAndArg,
+      // Avoid propagating failures to Promises returned by later
+      // invocations of the iterator.
+      callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
     }
 
     // Define the unified helper method that is used to implement .next,
@@ -238,16 +232,13 @@
   // Note that simple async functions are implemented on top of
   // AsyncIterator objects; they just return a Promise for the value of
   // the final result produced by the iterator.
-  runtime.async = function(innerFn, outerFn, self, tryLocsList) {
-    var iter = new AsyncIterator(
-      wrap(innerFn, outerFn, self, tryLocsList)
-    );
+  runtime.async = function (innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList));
 
-    return runtime.isGeneratorFunction(outerFn)
-      ? iter // If outerFn is a generator, return the full iterator.
-      : iter.next().then(function(result) {
-          return result.done ? result.value : iter.next();
-        });
+    return runtime.isGeneratorFunction(outerFn) ? iter // If outerFn is a generator, return the full iterator.
+    : iter.next().then(function (result) {
+      return result.done ? result.value : iter.next();
+    });
   };
 
   function makeInvokeMethod(innerFn, self, context) {
@@ -285,7 +276,6 @@
           // Setting context._sent for legacy support of Babel's
           // function.sent implementation.
           context.sent = context._sent = context.arg;
-
         } else if (context.method === "throw") {
           if (state === GenStateSuspendedStart) {
             state = GenStateCompleted;
@@ -293,7 +283,6 @@
           }
 
           context.dispatchException(context.arg);
-
         } else if (context.method === "return") {
           context.abrupt("return", context.arg);
         }
@@ -304,9 +293,7 @@
         if (record.type === "normal") {
           // If an exception is thrown from innerFn, we leave state ===
           // GenStateExecuting and loop back for another invocation.
-          state = context.done
-            ? GenStateCompleted
-            : GenStateSuspendedYield;
+          state = context.done ? GenStateCompleted : GenStateSuspendedYield;
 
           if (record.arg === ContinueSentinel) {
             continue;
@@ -316,7 +303,6 @@
             value: record.arg,
             done: context.done
           };
-
         } else if (record.type === "throw") {
           state = GenStateCompleted;
           // Dispatch the exception by looping back around to the
@@ -355,8 +341,7 @@
         }
 
         context.method = "throw";
-        context.arg = new TypeError(
-          "The iterator does not provide a 'throw' method");
+        context.arg = new TypeError("The iterator does not provide a 'throw' method");
       }
 
       return ContinueSentinel;
@@ -373,7 +358,7 @@
 
     var info = record.arg;
 
-    if (! info) {
+    if (!info) {
       context.method = "throw";
       context.arg = new TypeError("iterator result is not an object");
       context.delegate = null;
@@ -398,7 +383,6 @@
         context.method = "next";
         context.arg = undefined;
       }
-
     } else {
       // Re-yield the result returned by the delegate method.
       return info;
@@ -421,11 +405,11 @@
   // iterator prototype chain incorrectly implement this, causing the Generator
   // object to not be returned from this call. This ensures that doesn't happen.
   // See https://github.com/facebook/regenerator/issues/274 for more details.
-  Gp[iteratorSymbol] = function() {
+  Gp[iteratorSymbol] = function () {
     return this;
   };
 
-  Gp.toString = function() {
+  Gp.toString = function () {
     return "[object Generator]";
   };
 
@@ -460,7 +444,7 @@
     this.reset(true);
   }
 
-  runtime.keys = function(object) {
+  runtime.keys = function (object) {
     var keys = [];
     for (var key in object) {
       keys.push(key);
@@ -499,7 +483,8 @@
       }
 
       if (!isNaN(iterable.length)) {
-        var i = -1, next = function next() {
+        var i = -1,
+            next = function next() {
           while (++i < iterable.length) {
             if (hasOwn.call(iterable, i)) {
               next.value = iterable[i];
@@ -530,7 +515,7 @@
   Context.prototype = {
     constructor: Context,
 
-    reset: function(skipTempReset) {
+    reset: function reset(skipTempReset) {
       this.prev = 0;
       this.next = 0;
       // Resetting context._sent for legacy support of Babel's
@@ -547,16 +532,14 @@
       if (!skipTempReset) {
         for (var name in this) {
           // Not sure about the optimal order of these conditions:
-          if (name.charAt(0) === "t" &&
-              hasOwn.call(this, name) &&
-              !isNaN(+name.slice(1))) {
+          if (name.charAt(0) === "t" && hasOwn.call(this, name) && !isNaN(+name.slice(1))) {
             this[name] = undefined;
           }
         }
       }
     },
 
-    stop: function() {
+    stop: function stop() {
       this.done = true;
 
       var rootEntry = this.tryEntries[0];
@@ -568,7 +551,7 @@
       return this.rval;
     },
 
-    dispatchException: function(exception) {
+    dispatchException: function dispatchException(exception) {
       if (this.done) {
         throw exception;
       }
@@ -586,7 +569,7 @@
           context.arg = undefined;
         }
 
-        return !! caught;
+        return !!caught;
       }
 
       for (var i = this.tryEntries.length - 1; i >= 0; --i) {
@@ -610,17 +593,14 @@
             } else if (this.prev < entry.finallyLoc) {
               return handle(entry.finallyLoc);
             }
-
           } else if (hasCatch) {
             if (this.prev < entry.catchLoc) {
               return handle(entry.catchLoc, true);
             }
-
           } else if (hasFinally) {
             if (this.prev < entry.finallyLoc) {
               return handle(entry.finallyLoc);
             }
-
           } else {
             throw new Error("try statement without catch or finally");
           }
@@ -628,22 +608,16 @@
       }
     },
 
-    abrupt: function(type, arg) {
+    abrupt: function abrupt(type, arg) {
       for (var i = this.tryEntries.length - 1; i >= 0; --i) {
         var entry = this.tryEntries[i];
-        if (entry.tryLoc <= this.prev &&
-            hasOwn.call(entry, "finallyLoc") &&
-            this.prev < entry.finallyLoc) {
+        if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) {
           var finallyEntry = entry;
           break;
         }
       }
 
-      if (finallyEntry &&
-          (type === "break" ||
-           type === "continue") &&
-          finallyEntry.tryLoc <= arg &&
-          arg <= finallyEntry.finallyLoc) {
+      if (finallyEntry && (type === "break" || type === "continue") && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc) {
         // Ignore the finally entry if control is not jumping to a
         // location outside the try/catch block.
         finallyEntry = null;
@@ -662,13 +636,12 @@
       return this.complete(record);
     },
 
-    complete: function(record, afterLoc) {
+    complete: function complete(record, afterLoc) {
       if (record.type === "throw") {
         throw record.arg;
       }
 
-      if (record.type === "break" ||
-          record.type === "continue") {
+      if (record.type === "break" || record.type === "continue") {
         this.next = record.arg;
       } else if (record.type === "return") {
         this.rval = this.arg = record.arg;
@@ -681,7 +654,7 @@
       return ContinueSentinel;
     },
 
-    finish: function(finallyLoc) {
+    finish: function finish(finallyLoc) {
       for (var i = this.tryEntries.length - 1; i >= 0; --i) {
         var entry = this.tryEntries[i];
         if (entry.finallyLoc === finallyLoc) {
@@ -692,7 +665,7 @@
       }
     },
 
-    "catch": function(tryLoc) {
+    "catch": function _catch(tryLoc) {
       for (var i = this.tryEntries.length - 1; i >= 0; --i) {
         var entry = this.tryEntries[i];
         if (entry.tryLoc === tryLoc) {
@@ -710,7 +683,7 @@
       throw new Error("illegal catch attempt");
     },
 
-    delegateYield: function(iterable, resultName, nextLoc) {
+    delegateYield: function delegateYield(iterable, resultName, nextLoc) {
       this.delegate = {
         iterator: values(iterable),
         resultName: resultName,
@@ -726,12 +699,9 @@
       return ContinueSentinel;
     }
   };
-})(
-  // Among the various tricks for obtaining a reference to the global
-  // object, this seems to be the most reliable technique that does not
-  // use indirect eval (which violates Content Security Policy).
-  typeof global === "object" ? global :
-  typeof window === "object" ? window :
-  typeof self === "object" ? self : this
-);
+}(
+// Among the various tricks for obtaining a reference to the global
+// object, this seems to be the most reliable technique that does not
+// use indirect eval (which violates Content Security Policy).
+(typeof global === "undefined" ? "undefined" : _typeof(global)) === "object" ? global : (typeof window === "undefined" ? "undefined" : _typeof(window)) === "object" ? window : (typeof self === "undefined" ? "undefined" : _typeof(self)) === "object" ? self : undefined);
 /* eslint-enable */

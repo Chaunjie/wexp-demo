@@ -5,7 +5,7 @@
 </style>
 <style lang="less" src="./less/index.less"></style>
 <script>
-  import wexp from 'wexp/index'
+  import wexp from 'wexp'
   // import regeneratorRuntime from './lib/runtime'
 
   export default class extends wexp.app {

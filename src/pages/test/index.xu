@@ -1,5 +1,6 @@
 <template>
   <view bindtap="tapPro" class="{{num < 3 ? 'test' : 'name'}}">{{text}}</view>
+  <!-- <web-view wx:if="{{ url }}" src="{{url}}" bindmessage="onMessage" bindload="load"></web-view> -->
 </template>
 <script>
   import wexp from 'wexp/index'
@@ -10,10 +11,21 @@
 
     data = {
       text: 'chaunjie',
-      num: 2
+      num: 2,
+      url: 'http://192.168.21.40:6765/'
+    }
+
+    methods = {
+      onMessage (e) {
+        console.log(e)
+      },
+      load (e) {
+        console.log(e)
+      }
     }
 
     onLoad (options) {
+      console.log(options)
       const name = this.$parent.globalData.name
       this.setData({
         text: name
