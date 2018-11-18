@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "kai-ui": "^1.2.4",
-    "wexp": "^0.1.0",
+    "wexp": "^1.0.1",
     "wexp-button": "^1.0.0"
   }
 }
