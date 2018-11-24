@@ -47,9 +47,7 @@ usingComponents: {
 
 ```
 ├── dist                   开发者工具运行目录 
-|
-├── node_modules           小程序npm包（支持原生小程序组件库npm包以及wexp版本的组件）
-|       
+├── node_modules           小程序npm包（支持原生小程序组件库npm包以及wexp版本的组件）      
 ├── src                    代码编写的目录（该目录为使用wexp后的开发目录）
 |   ├── components         wexp组件目录（组件不属于完整页面，仅供完整页面或其他组件引用）
 |   |   ├── a.xu           可复用的wexp组件a

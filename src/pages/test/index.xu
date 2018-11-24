@@ -1,40 +1,44 @@
+<style lang="less" src="../../less/test.less"></style>
 <template>
-  <view bindtap="tapPro" class="{{num < 3 ? 'test' : 'name'}}">{{text}}</view>
-  <!-- <web-view wx:if="{{ url }}" src="{{url}}" bindmessage="onMessage" bindload="load"></web-view> -->
+  <view class="test-page">
+    <k-button 
+      custom-class="custom-btn" 
+      name="warn"
+      bindtap="changeName">
+      点击修改全局name属性
+    </k-button>
+    <k-button 
+      custom-class="custom-btn" 
+      name="danger"
+      bindtap="back">
+      点击返回
+    </k-button>
+  </view>
 </template>
 <script>
-  import wexp from 'wexp/index'
+  import wexp from 'wexp'
   export default class Test extends wexp.page {
     config = {
-      'navigationBarTitleText': '测试页面'
+      'navigationBarTitleText': '测试页面',
+      'usingComponents': {
+        'k-panel': '../../components/panel/index',
+        'k-button': 'wexp-button/index'
+      }
     }
 
-    data = {
-      text: 'chaunjie',
-      num: 2,
-      url: 'http://192.168.21.40:6765/'
-    }
+    data = {}
 
     methods = {
-      onMessage (e) {
-        console.log(e)
+      changeName (e) {
+        this.$parent.globalData.name = this.$parent.globalData.name === 'chaunjie' ? 'xudao' : 'chaunjie'
       },
-      load (e) {
-        console.log(e)
+      back (e) {
+        this.$back()
       }
     }
 
     onLoad (options) {
       console.log(options)
-      const name = this.$parent.globalData.name
-      this.setData({
-        text: name
-      })
-      console.log(name)
-    }
-
-    tapPro (e) {
-      this.$back()
     }
   }
 </script>

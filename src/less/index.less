@@ -25,3 +25,31 @@
 .do-test{
   background-color: green;
 }
+
+.index-page{
+  padding: 0 15px;
+  .custom-panel {
+    & > view:last-of-type {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+  }
+  .custom-panel__title{
+    font-size: 20px;
+    line-height: 1.5em;
+    margin-bottom: 10px;
+    color: #666;
+    display: inline-block;
+  }
+  .trans-btn{
+    margin-top: 10px;
+  }
+  .log-item {
+    font-size: 14px;
+    color: #999;
+    line-height: 1.5em;
+  }
+}

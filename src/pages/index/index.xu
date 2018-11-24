@@ -1,23 +1,57 @@
 <style lang="less" src="../../less/index.less"></style>
-<style lang="less" src="./index.less"></style>
 <template>
-  <view class="icon-img">
-    <view class="bg" bind:tap="onClick"></view>
+  <view class="index-page">
+    <view class="icon-img">
+      <view class="bg"></view>
+    </view>
+
+    <k-panel custom-class="custom-panel">
+      <view class="custom-panel__title">全局变量: {{globalName}}</view>
+    </k-panel>
+
+    <k-panel custom-class="custom-panel">
+      <view class="custom-panel__title">姓名: {{name}}</view>
+      <k-button 
+        custom-class="custom-btn" 
+        name="success"
+        size="small" 
+        bindtap="changeName">
+        点击修改name属性
+      </k-button>
+    </k-panel>
+
+    <k-panel custom-class="custom-panel">
+      <view class="custom-panel__title">页面: {{getPage}}</view>
+      <k-button 
+        custom-class="custom-btn" 
+        name="success"
+        size="small" 
+        bindtap="changePage">
+        点击修改page属性
+      </k-button>
+    </k-panel>
+
+    <k-button 
+      custom-class="trans-btn" 
+      name="success" 
+      size="large"
+      bindtap="onClick">
+      点击切换页面
+    </k-button>
+
+    <block wx:if="{{ logArr.length }}">
+      <view 
+        wx:for="{{logArr}}"
+        wx:key="log-key"
+        class="log-item">
+        {{ item }}
+      </view>
+    </block>
+    <view class="log-item" wx:else>暂无修改记录</view>
   </view>
-  <view>{{getName}}</view>
-  <!-- <view wx:for="{{arr}}" wx:key="item">{{item.name}}</view> -->
-  <!-- <k-panel title="{{item.title}}" custom-class="panel-container" wx:for="{{ cellArr }}" wx:for-item="item" wx:key="index">
-    <k-cell-group custom-class="single-cell-group">
-      <k-cell title="{{it.title}}" arrow="{{ true }}" access="{{ true }}" wx:for="{{ item.list }}" wx:for-item="it" wx:key="idx" bind:tap="onClick" data-item="{{ it }}"></k-cell>
-    </k-cell-group>
-  </k-panel> -->
-  <k-tag type="danger">测试</k-tag>
-  <k-button custom-class="do-test" name="success" bindtap="onSelect">这是一个按钮</k-button>
 </template>
 <script>
   import wexp from 'wexp'
-  // import { connect } from '../../lib/index'
-  // import doTest from '../../lib/doTest'
 
   export default class Index extends wexp.page {
     config = {
@@ -25,66 +59,51 @@
       backgroundColor: '#ccc',
       'usingComponents': {
         'k-panel': '../../components/panel/index',
-        'k-cell-group': '../../components/cell-group/index',
-        'k-cell': '../../components/cell/index',
-        'k-test': '../../components/test/index',
-        'k-panel1': 'kai-ui/panel/index',
-        'k-tag': 'kai-ui/tag/index',
         'k-button': 'wexp-button/index'
       }
     }
 
     data = {
       page: 1,
-      arr: [{id: 1, name: 'xudao'}, {id: 2, name: 'chaunjie'}],
-      obj: {
-        name: 'chuanjie',
-        obj: {
-          name: 'xudao'
-        }
-      }
+      name: 'chaunjie',
+      globalName: '',
+      logArr: []
     }
 
     methods = {
-      onSelect (e) {
-        console.log(e)
+      changePage (e) {
+        const { page } = this.data
+        this.setData({
+          page: page + 1
+        })
+      },
+      changeName () {
+        const { name } = this.data
+        this.setData({
+          name: name === 'chaunjie' ? 'xudao' : 'chaunjie'
+        })
+      },
+      onClick (e) {
+        this.$route('navigate', '../test/index', {id: 1023465})
       }
     }
 
     computed = {
-      getName () {
-        const {obj, arr} = this.data
-        console.log(obj)
-        return obj.obj.name + arr[0].name
+      getPage () {
+        return this.data.page
       }
-    }
-
-    onClick (e) {
-      this.$parent.globalData.name = '点击返回'
-      // const detail = e.currentTarget.dataset.item
-      let {page, arr, obj} = this.data
-      page++
-      arr.push({id: 3, name: 'jjjj'})
-      // arr[0].name = 'peng'
-      // obj.obj.name = 'kai'
-      if (obj.obj.name === 'kai') {
-        obj.obj.name = 'xudao'
-      } else {
-        obj.obj.name = 'kai'
-      }
-      this.setData({page, arr, obj})
-      this.$route('navigate', '../test/index', {id: 7777})
     }
 
     watch = {
-      page (newValue, oldVal) {
-        console.log(newValue, oldVal)
+      page (newValue) {
+        const { logArr } = this.data
+        logArr.push('page属性修改，新值为' + newValue)
+        this.setData({logArr})
       },
-      arr (newValue, oldVal) {
-        console.log(newValue, oldVal)
-      },
-      obj (newValue, oldVal) {
-        console.log(newValue, oldVal)
+      name (newValue) {
+        const { logArr } = this.data
+        logArr.push('name属性修改，新值为' + newValue)
+        this.setData({logArr})
       }
     }
 
@@ -102,6 +121,9 @@
 
     onShow () {
       console.log('on show')
+      this.setData({
+        globalName: this.$parent.globalData.name
+      })
     }
   }
 </script>

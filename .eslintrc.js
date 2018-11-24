@@ -22,6 +22,7 @@ module.exports = {
     'space-before-function-paren': 0,
     'no-tabs': 'off',
     'indent': [0],
-    'no-mixed-spaces-and-tabs': 'off'
+    'no-mixed-spaces-and-tabs': 'off',
+    "object-curly-spacing": [0, "never"]
   }
 }
