@@ -1,3 +1,6 @@
 module.exports = {
-  eslint: true
+  eslint: true,
+  babel: {
+    plugins: ["transform-decorators-legacy"]
+  }
 }
