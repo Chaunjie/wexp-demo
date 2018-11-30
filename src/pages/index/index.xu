@@ -52,6 +52,7 @@
 </template>
 <script>
   import wexp from 'wexp'
+  import sleep from '../../mixins/sleep'
 
   export default class Index extends wexp.page {
     config = {
@@ -119,6 +120,7 @@
       console.log('on ready')
     }
 
+    @sleep
     onShow () {
       console.log('on show')
       this.setData({
