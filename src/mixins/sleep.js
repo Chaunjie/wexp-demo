@@ -1,4 +1,4 @@
-export default function sleep () {
+export default function sleep (target) {
   delay(1000)
 }
 
