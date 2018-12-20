@@ -29,6 +29,10 @@ $ npm install
 $ npm run dev
 ```
 
+**开发者工具预览**
+
+微信开发者工具-> 选择项目目录下的dist目录
+
 **npm组件使用方法**
 
 原生组件库（wexp版本组件）无需添加额外的引入操作，按照原生引用组件的方式一样，wexp组件写法请参照([wexp组件创建教程](https://github.com/Chaunjie/wexp-button))
@@ -39,17 +43,15 @@ usingComponents: {
 }
 ```
 
-**构建 npm**
-
-微信开发者工具->菜单栏【工具】->构建npm
-
 ### wexp项目的目录结构
 
 ```
-├── dist                   开发者工具运行目录 
-|
-├── node_modules           小程序npm包（支持原生小程序组件库npm包以及wexp版本的组件）
-|       
+├── dist                   开发者工具运行目录
+|   ├── components         打包后的组件目录  
+|   ├── npm                模块打包后的目录
+|   ├── pages              打包后的页面目录
+|   └── app.*              打包后的入口相关文件
+├── node_modules           小程序npm包（支持原生小程序组件库npm包以及wexp版本的组件）      
 ├── src                    代码编写的目录（该目录为使用wexp后的开发目录）
 |   ├── components         wexp组件目录（组件不属于完整页面，仅供完整页面或其他组件引用）
 |   |   ├── a.xu           可复用的wexp组件a
